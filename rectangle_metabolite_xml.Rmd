@@ -1,0 +1,44 @@
+---
+title: "rectangle_metabolite_xml"
+output: html_document
+date: "2022-08-26"
+---
+
+# rectangle_metabolite_xml
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Libraries
+
+```{r}
+library(XML)
+library(dplyr)
+```
+
+## Metabolites file
+
+### Parse the XML
+
+```{r}
+metabolites_xml_df <- xmlToDataFrame("data/hmdb_metabolites.xml")
+```
+
+### Select just the needed columns
+
+```{r}
+metabolites <- metabolites_xml_df %>%
+  select(accession, name, description, chemical_formula, average_molecular_weight, smiles, iupac_name)
+```
+
+### Write the file
+
+```{r}
+write.csv(metabolites, "data/hmdb_metabolites.csv", row.names = FALSE)
+```
+
+```{r}
+write.csv(metabolites_xml_df, "data/metabolite_xml_df.csv", row.names = FALSE)
+```
+
