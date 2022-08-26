@@ -1,0 +1,41 @@
+---
+title: "rectangle_xml.Rmd"
+output: html_document
+date: "2022-08-26"
+---
+
+# Rectangle .XML
+
+All we care about are the HMDB IDs, name, and description. The rest can be ignored.
+
+## Libraries and knitr options
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(XML)
+library(tidyr)
+library(dplyr)
+library(repurrrsive)
+```
+
+## Proteins file
+
+### Parse proteins XML
+
+```{r}
+protein_xml_df <- xmlToDataFrame("data/hmdb_proteins.xml")
+```
+
+### Select needed columns
+
+```{r}
+selected_protein_data <- protein_xml_df %>%
+  select(accession, name, description = specific_function)
+```
+
+### Write the .csv
+
+```{r}
+write.csv(selected_protein_data, file = "data/hmdb_proteins.csv", row.names = FALSE)
+```
+
