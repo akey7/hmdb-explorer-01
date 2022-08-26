@@ -13,9 +13,7 @@ All we care about are the HMDB IDs, name, and description. The rest can be ignor
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(XML)
-library(tidyr)
 library(dplyr)
-library(repurrrsive)
 ```
 
 ## Proteins file
