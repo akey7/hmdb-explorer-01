@@ -45,7 +45,4 @@ vignettes/*.pdf
 .DS_Store
 
 # Data directory
-data/
-
-
-
+data
