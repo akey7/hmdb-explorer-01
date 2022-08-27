@@ -1,0 +1,30 @@
+---
+title: "hmdb_metabolites_narrow"
+output: html_document
+date: "2022-08-27"
+---
+
+# hmdb_metabolites_narrow
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Libraries
+
+```{r}
+library(dplyr)
+```
+
+## Read the data
+
+```{r}
+hmdb_meatbolites_narrow <- read.csv("data/hmdb_metabolites_wide.csv") %>%
+  select(accession, name, description)
+```
+
+## Write the data back out
+
+```{r}
+write.csv(hmdb_meatbolites_narrow, "data/hmdb_metabolites.csv", row.names = FALSE)
+```
