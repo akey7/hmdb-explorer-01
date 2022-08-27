@@ -2,7 +2,7 @@ from lib2to3.pgen2 import token
 import os
 import pandas as pd
 
-directory = os.fsencode('data/hmdb_predicted_msms_peak_lists')
+directory = os.fsencode('data/hmdb_predicted_cms_peak_lists')
 
 accessions = set()
 
@@ -17,13 +17,15 @@ for file in os.listdir(directory):
             print(f'{accession} is a duplicate. Skipping.')
         else:
             method = tokens[1]
-            with open(f'data/hmdb_predicted_msms_peak_lists/{filename}', 'r') as f:
+            group = f'{tokens[2]} {tokens[3]}'
+            with open(f'data/hmdb_predicted_cms_peak_lists/{filename}', 'r') as f:
                 for line in f:
                     line_stripped = line.strip()
                     mz, peak = line_stripped.split(" ")
                     row = {
                         'accession': accession,
                         'method': method,
+                        'group': group,
                         'mz': mz,
                         'peak': peak
                     }
@@ -32,4 +34,4 @@ for file in os.listdir(directory):
 
 df = pd.DataFrame(rows)
 
-df.to_csv('data/hmdb_predicted_msms_peak.csv', index=False)
+df.to_csv('data/hmdb_predicted_cms_peak.csv', index=False)
