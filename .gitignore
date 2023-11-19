@@ -44,5 +44,6 @@ vignettes/*.pdf
 # macOS stuff
 .DS_Store
 
-# Data directory
-data
+# Data directories
+input/
+output/
