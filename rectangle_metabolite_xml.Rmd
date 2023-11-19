@@ -1,7 +1,7 @@
 ---
 title: "rectangle_metabolite_xml"
 output: html_document
-date: "2022-08-26"
+date: "2023-11-18"
 ---
 
 # rectangle_metabolite_xml
@@ -15,6 +15,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 library(XML)
 library(dplyr)
+library(here)
 ```
 
 ## Metabolites file
@@ -22,7 +23,7 @@ library(dplyr)
 ### Parse the XML
 
 ```{r}
-metabolites_xml_df <- xmlToDataFrame("data/hmdb_metabolites.xml")
+metabolites_xml_df <- xmlToDataFrame(here("input", "/hmdb_metabolites.xml"))
 ```
 
 ### Select just the needed columns
@@ -35,10 +36,10 @@ metabolites <- metabolites_xml_df %>%
 ### Write the file
 
 ```{r}
-write.csv(metabolites, "data/hmdb_metabolites.csv", row.names = FALSE)
+write.csv(metabolites, here("output", "hmdb_metabolties.csv"), row.names = FALSE)
 ```
 
 ```{r}
-write.csv(metabolites_xml_df, "data/metabolite_xml_df.csv", row.names = FALSE)
+write.csv(metabolites_xml_df, here("output", "hmdb_metabolites_xml_df.csv"), row.names = FALSE)
 ```
 
