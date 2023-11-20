@@ -23,7 +23,7 @@ library(here)
 ### Parse the XML
 
 ```{r}
-metabolites_xml_df <- xmlToDataFrame(here("input", "/hmdb_metabolites.xml"))
+metabolites_xml_df <- xmlToDataFrame(here("input", "hmdb_metabolites.xml"))
 ```
 
 ### Select just the needed columns
